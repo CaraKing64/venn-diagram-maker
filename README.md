@@ -16,14 +16,14 @@ Set to True if you want the circle to be labelled
   ["c1c2c3", True],
 ] `
 
-Set the text to be displayed by the key, set to None for no text
+Set the text to be displayed by the key, set to `None` for no text
 `key_label = " = selected area"`
 
 Size of the window
 `WIN_WIDTH = 1600
 WIN_HEIGHT = 1600`
 
-Choose between 'sharp' and 'fast' - sharp will run fast unless using a high screen resolution ~1440p or 2160p onwards
+Choose between `'sharp'` and `'fast'` - `sharp` will run fast unless using a high screen resolution ~1440p or 2160p onwards
 `draw_mode = 'sharp'`
 
 
