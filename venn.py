@@ -11,7 +11,7 @@ n_circles = 3
 to_label = [ # Set to True if you want the circle to be labelled
   ["c1", True],
   ["c2", True],
-  ["c3", True],
+  ["c3", False],
   ["c1c2", False],
   ["c1c3", False],
   ["c2c3", False],
@@ -25,7 +25,7 @@ key_label = " = selected area"
 WIN_WIDTH = 1600
 WIN_HEIGHT = 1600
 
-# Choose between 'sharp' and 'fast' - fast will look fine unless using a high screen resolution ~1440p
+# Choose between 'sharp' and 'fast' - sharp will run fast unless using a high screen resolution ~1440p or 2160p onwards
 draw_mode = 'sharp'
 
 
@@ -35,7 +35,7 @@ draw_mode = 'sharp'
 
 
 
-win = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
+win = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT)   )
 clock = pygame.time.Clock()
 
 def dist(p1:tuple, p2:tuple):
@@ -151,7 +151,7 @@ class VennDiagram:
     
 
     r_c1 = dist(mpos, self.c1pos) < self.circleradius
-    r_c2 = None
+    r_c2 = None 
     r_c3 = None
 
     if self.circles_count >= 2:
@@ -206,29 +206,21 @@ class VennDiagram:
       n2 = int(self.c1pos[1] - self.circleradius)
       n3 = int(2*self.circleradius)
       n4 = int(2*self.circleradius)
+      for px in range(n1, n1+n3, self.drawpixelsize):
+        for py in range(n2, n2+n4, self.drawpixelsize):
+          p_draw = dist((px, py), self.c1pos) < self.circleradius
+          if self.fillstates["c1"] and p_draw:
+            pygame.draw.rect(win, self.truecolour, pygame.Rect(px, py, self.drawpixelsize, self.drawpixelsize))
+
       
     if self.circles_count == 2:
       n1 = int(self.c1pos[0] - self.circleradius)
       n2 = int(self.c1pos[1] - self.circleradius)
       n3 = int(self.c2pos[0] - self.c1pos[0] + 2*self.circleradius)
       n4 = int(2*self.circleradius)
-      
 
-    if self.circles_count == 3:
-      n1 = int(self.c1pos[0] - self.circleradius)
-      n2 = int(self.c1pos[1] - self.circleradius)
-      n3 = int(self.c2pos[0] - self.c1pos[0] + 2*self.circleradius)
-      n4 = int(self.c3pos[1] - self.c1pos[1] + 2*self.circleradius)
-    pygame.draw.rect(win, (0, 255, 255), pygame.Rect(n1, n2, n3, n4))
-
-    for px in range(n1, n1+n3, self.drawpixelsize):
-      for py in range(n2, n2+n4, self.drawpixelsize):
-        if self.circles_count == 1:
-          p_draw = dist((px, py), self.c1pos) < self.circleradius
-          if self.fillstates["c1"] and p_draw:
-            pygame.draw.rect(win, self.truecolour, pygame.Rect(px, py, self.drawpixelsize, self.drawpixelsize))
-
-        elif self.circles_count == 2:
+      for px in range(n1, n1+n3, self.drawpixelsize):
+        for py in range(n2, n2+n4, self.drawpixelsize):
           r_c1 = dist((px, py), self.c1pos) < self.circleradius
           r_c2 = dist((px, py), self.c2pos) < self.circleradius
           if self.fillstates["c1c2"] and r_c1 and r_c2:
@@ -238,7 +230,16 @@ class VennDiagram:
           elif self.fillstates["c2"] and r_c2 and not r_c1:
             pygame.draw.rect(win, self.truecolour, pygame.Rect(px, py, self.drawpixelsize, self.drawpixelsize))
         
-        elif self.circles_count == 3:
+      
+
+    if self.circles_count == 3:
+      n1 = int(self.c1pos[0] - self.circleradius)
+      n2 = int(self.c1pos[1] - self.circleradius)
+      n3 = int(self.c2pos[0] - self.c1pos[0] + 2*self.circleradius)
+      n4 = int(self.c3pos[1] - self.c1pos[1] + 2*self.circleradius)
+
+      for px in range(n1, n1+n3, self.drawpixelsize):
+        for py in range(n2, n2+n4, self.drawpixelsize):
           r_c1 = dist((px, py), self.c1pos) < self.circleradius
           r_c2 = dist((px, py), self.c2pos) < self.circleradius
           r_c3 = dist((px, py), self.c3pos) < self.circleradius
