@@ -1,6 +1,6 @@
-##Configuration is entered at the top of the file like this**
+## Configuration is entered at the top of the file like this**
 
-#SETUP
+# SETUP
 
 Supports: 1, 2, 3
 `n_circles = 3`
@@ -18,12 +18,12 @@ Supports: 1, 2, 3
 Set the text to be displayed by the key, set to None for no text
 `key_label = " = selected area"`
 
-# Size of the window
+Size of the window
 `WIN_WIDTH = 1600
 WIN_HEIGHT = 1600`
 
-# Choose between 'sharp' and 'fast' - sharp will run fast unless using a high screen resolution ~1440p or 2160p onwards
+Choose between 'sharp' and 'fast' - sharp will run fast unless using a high screen resolution ~1440p or 2160p onwards
 `draw_mode = 'sharp'`
 
 
-### END SETUP
+# END SETUP
