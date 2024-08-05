@@ -1,7 +1,6 @@
 import pygame, math
-#import pygame.gfxdraw
-
 pygame.init()
+
 
 ### SETUP
 
