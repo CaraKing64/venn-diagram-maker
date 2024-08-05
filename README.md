@@ -5,7 +5,8 @@
 Supports: 1, 2, 3
 `n_circles = 3`
 
-`to_label = [ # Set to True if you want the circle to be labelled
+Set to True if you want the circle to be labelled
+`to_label = [ 
   ["c1", True],
   ["c2", True],
   ["c3", False],
